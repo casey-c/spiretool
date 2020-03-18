@@ -1,4 +1,4 @@
-#include "config.h"
+#include "src/h/config.h"
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QFile>

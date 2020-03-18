@@ -1,4 +1,4 @@
-#include "data.h"
+#include "src/h/data.h"
 
 Data::Data() :
     character(QString("Unknown Character")),

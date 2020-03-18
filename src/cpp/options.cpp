@@ -1,4 +1,4 @@
-#include "options.h"
+#include "src/h/options.h"
 #include "ui_options.h"
 #include <QDebug>
 #include <QFileDialog>

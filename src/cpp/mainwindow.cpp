@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "src/h/mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QtDebug>
 #include <QFile>
@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <QDir>
 
-#include "options.h"
+#include "src/h/options.h"
 
 // fwd decl
 QJsonObject readSaveFileToObject(QString file);

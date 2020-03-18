@@ -16,27 +16,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    about.cpp \
-    config.cpp \
-    data.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    options.cpp \
-    tutorial.cpp
+    src/cpp/about.cpp \
+    src/cpp/config.cpp \
+    src/cpp/data.cpp \
+    src/cpp/main.cpp \
+    src/cpp/mainwindow.cpp \
+    src/cpp/options.cpp \
+    src/cpp/tutorial.cpp
 
 HEADERS += \
-    about.h \
-    config.h \
-    data.h \
-    mainwindow.h \
-    options.h \
-    tutorial.h
+    src/h/about.h \
+    src/h/config.h \
+    src/h/data.h \
+    src/h/mainwindow.h \
+    src/h/options.h \
+    src/h/tutorial.h
 
 FORMS += \
-    about.ui \
-    mainwindow.ui \
-    options.ui \
-    tutorial.ui
+    src/ui/about.ui \
+    src/ui/mainwindow.ui \
+    src/ui/options.ui \
+    src/ui/tutorial.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -44,4 +44,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resources.qrc
+    resources/resources.qrc
