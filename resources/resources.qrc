@@ -4,5 +4,6 @@
         <file>logo32.png</file>
         <file>logo64.png</file>
         <file>logo128.png</file>
+        <file>icon.ico</file>
     </qresource>
 </RCC>
