@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>193</width>
+    <width>228</width>
     <height>148</height>
    </rect>
   </property>
@@ -20,8 +20,8 @@
    <string>SpireTool</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
-    <normaloff>:/logo/resources/logo128.png</normaloff>:/logo/resources/logo128.png</iconset>
+   <iconset resource="../../resources/resources.qrc">
+    <normaloff>:/logo/logo32.png</normaloff>:/logo/logo32.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -111,7 +111,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>193</width>
+     <width>228</width>
      <height>21</height>
     </rect>
    </property>
@@ -167,7 +167,7 @@
   </action>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../../resources/resources.qrc"/>
  </resources>
  <connections>
   <connection>

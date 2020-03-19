@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Options</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../resources/resources.qrc">
+    <normaloff>:/logo/logo32.png</normaloff>:/logo/logo32.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2">
@@ -379,7 +383,9 @@
   <tabstop>button_save</tabstop>
   <tabstop>button_cancel</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>browse_saves</sender>
