@@ -10,7 +10,7 @@ SpireTool is a graphical interface for looking at data extracted from Slay The S
 * Automatic writing to a file for OBS to read from
 
 ### Installation / Use
-To use this program, head over to the (releases)[https://gitlab.com/casey/spiretool/-/releases] section of this repository and download the most recent release. Extract the folder to a place on your file system and run the executable. On first use, you'll need to open up the Options menu (Edit->Options or press 
+To use this program, head over to the https://github.com/casey-c/spiretool/releases section of this repository and download the most recent release. Extract the folder to a place on your file system and run the executable. On first use, you'll need to open up the Options menu (Edit->Options or press 
 'O') and set the SlayTheSpire saves folder that the program needs to read. Additional details can be found in the Help->Tutorial window of the program.
 
 ### Planned Features
