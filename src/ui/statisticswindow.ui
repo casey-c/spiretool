@@ -6,18 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
+    <width>875</width>
     <height>396</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SpireTool</string>
+   <string>Statistics</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../resources/resources.qrc">
+    <normaloff>:/logo/logo32.png</normaloff>:/logo/logo32.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="2" column="2" rowspan="4">
       <widget class="QPushButton" name="pushButton_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -31,6 +38,9 @@
      </item>
      <item row="2" column="0" rowspan="2">
       <widget class="QRadioButton" name="radioButton_2">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Full History</string>
        </property>
@@ -41,6 +51,9 @@
      </item>
      <item row="1" column="2">
       <widget class="QLabel" name="label_49">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Export Options</string>
        </property>
@@ -48,6 +61,9 @@
      </item>
      <item row="2" column="1">
       <widget class="QCheckBox" name="checkBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>A20 Runs Only</string>
        </property>
@@ -58,6 +74,9 @@
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_48">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Controls</string>
        </property>
@@ -65,6 +84,9 @@
      </item>
      <item row="5" column="0">
       <widget class="QRadioButton" name="radioButton_3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Last 20 Runs Only</string>
        </property>
@@ -86,8 +108,8 @@
          <string>Win Streaks</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="6" column="5">
-          <widget class="QLabel" name="label_23">
+         <item row="5" column="8">
+          <widget class="QLabel" name="label_defect_total_loss">
            <property name="text">
             <string>0</string>
            </property>
@@ -96,24 +118,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="7">
-          <widget class="QLabel" name="label_25">
-           <property name="text">
-            <string>Total Losses</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="4" rowspan="4">
-          <widget class="Line" name="line_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="9">
+         <item row="0" column="10">
           <widget class="QLabel" name="label_36">
            <property name="text">
             <string>Win Rate</string>
@@ -123,15 +128,31 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="8" rowspan="2">
-          <widget class="Line" name="line_6">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+         <item row="1" column="7">
+          <widget class="QLabel" name="label_rot_total_win">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="11">
+          <widget class="QLabel" name="label_47">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0.0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
          <item row="5" column="7">
-          <widget class="QLabel" name="label_33">
+          <widget class="QLabel" name="label_defect_total_win">
            <property name="text">
             <string>0</string>
            </property>
@@ -140,20 +161,30 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="7">
-          <widget class="QLabel" name="label_35">
+         <item row="5" column="10">
+          <widget class="QLabel" name="label_defect_wr">
            <property name="text">
-            <string>0</string>
+            <string>0%</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="1" column="5">
-          <widget class="QLabel" name="label_19">
+         <item row="6" column="2">
+          <widget class="QLabel" name="label_watcher_curr">
            <property name="text">
-            <string>0</string>
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="10">
+          <widget class="QLabel" name="label_ironclad_wr">
+           <property name="text">
+            <string>0%</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -170,317 +201,8 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="5">
-          <widget class="QLabel" name="label_18">
-           <property name="text">
-            <string>Total Runs</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="7">
-          <widget class="QLabel" name="label_29">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="9">
-          <widget class="QLabel" name="label_37">
-           <property name="text">
-            <string>0%</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="3">
-          <widget class="QLabel" name="label_15">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="6">
-          <widget class="QLabel" name="label_30">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="label_rot_curr">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" rowspan="2">
-          <widget class="Line" name="line_3">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="2">
-          <widget class="QLabel" name="label_watcher_curr">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QLabel" name="label_ironclad_curr">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QLabel" name="label_13">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="5">
-          <widget class="QLabel" name="label_20">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Personal Best</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="5">
-          <widget class="QLabel" name="label_22">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Watcher Only:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="6">
-          <widget class="QLabel" name="label_26">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="3">
-          <widget class="QLabel" name="label_16">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1" rowspan="4">
-          <widget class="Line" name="line_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="8" rowspan="4">
-          <widget class="Line" name="line_7">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Silent Only:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="5">
-          <widget class="QLabel" name="label_21">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="7">
-          <widget class="QLabel" name="label_31">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="3">
-          <widget class="QLabel" name="label_17">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="6">
-          <widget class="QLabel" name="label_24">
-           <property name="text">
-            <string>Total Wins</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Ironclad Only:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3">
-          <widget class="QLabel" name="label_14">
-           <property name="text">
-            <string>0-0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="9">
-          <widget class="QLabel" name="label_41">
-           <property name="text">
-            <string>0%</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="6">
-          <widget class="QLabel" name="label_32">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="6">
-          <widget class="QLabel" name="label_34">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="9">
-          <widget class="QLabel" name="label_39">
-           <property name="text">
-            <string>0%</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="6">
-          <widget class="QLabel" name="label_28">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4" rowspan="2">
-          <widget class="Line" name="line_5">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="9">
-          <widget class="QLabel" name="label_38">
-           <property name="text">
-            <string>0%</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="7">
-          <widget class="QLabel" name="label_27">
-           <property name="text">
-            <string>0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="9">
-          <widget class="QLabel" name="label_40">
+         <item row="4" column="10">
+          <widget class="QLabel" name="label_silent_wr">
            <property name="text">
             <string>0%</string>
            </property>
@@ -499,20 +221,13 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_7">
+         <item row="5" column="3">
+          <widget class="QLabel" name="label_defect_best_win">
            <property name="text">
-            <string>Current Streak</string>
+            <string>0-0</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Rotating:</string>
            </property>
           </widget>
          </item>
@@ -523,8 +238,363 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="10">
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Watcher Only:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="6">
+          <widget class="QLabel" name="label_watcher_total">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="8">
+          <widget class="QLabel" name="label_rot_total_loss">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5" rowspan="2">
+          <widget class="Line" name="line_5">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="12">
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLabel" name="label_ironclad_best_win">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Current Streak</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="11">
+          <widget class="QLabel" name="label_45">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0.0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="7">
+          <widget class="QLabel" name="label_silent_total_win">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Ironclad Only:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" rowspan="4">
+          <widget class="Line" name="line_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="8">
+          <widget class="QLabel" name="label_silent_total_loss">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="11">
+          <widget class="QLabel" name="label_44">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0.0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLabel" name="label_rot_best_win">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="3">
+          <widget class="QLabel" name="label_watcher_best_win">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Total Runs</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="label_silent_best_win">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Personal Best</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="11">
+          <widget class="QLabel" name="label_46">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0.0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="7">
+          <widget class="QLabel" name="label_watcher_total_win">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7">
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>Total Wins</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="6">
+          <widget class="QLabel" name="label_rot_total">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="6">
+          <widget class="QLabel" name="label_ironclad_total">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="8">
+          <widget class="QLabel" name="label_25">
+           <property name="text">
+            <string>Total Losses</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="7">
+          <widget class="QLabel" name="label_ironclad_total_win">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLabel" name="label_ironclad_curr">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="10">
+          <widget class="QLabel" name="label_watcher_wr">
+           <property name="text">
+            <string>0%</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="8">
+          <widget class="QLabel" name="label_watcher_total_loss">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Silent Only:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="8">
+          <widget class="QLabel" name="label_ironclad_total_loss">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="6">
+          <widget class="QLabel" name="label_defect_total">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="9" rowspan="4">
+          <widget class="Line" name="line_7">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Rotating:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="9" rowspan="2">
+          <widget class="Line" name="line_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="10">
+          <widget class="QLabel" name="label_rot_wr">
+           <property name="text">
+            <string>0%</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="6">
+          <widget class="QLabel" name="label_silent_total">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" rowspan="2">
+          <widget class="Line" name="line_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="11">
           <widget class="QLabel" name="label_42">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Average Floor</string>
            </property>
@@ -533,60 +603,96 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="10">
-          <widget class="QLabel" name="label_43">
-           <property name="text">
-            <string>0.0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="10">
-          <widget class="QLabel" name="label_44">
-           <property name="text">
-            <string>0.0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="10">
-          <widget class="QLabel" name="label_45">
-           <property name="text">
-            <string>0.0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="10">
-          <widget class="QLabel" name="label_46">
-           <property name="text">
-            <string>0.0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="10">
-          <widget class="QLabel" name="label_47">
-           <property name="text">
-            <string>0.0</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" colspan="11">
-          <widget class="Line" name="line">
+         <item row="3" column="5" rowspan="4">
+          <widget class="Line" name="line_4">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="11">
+          <widget class="QLabel" name="label_43">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0.0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_rot_curr">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Personal Worst</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLabel" name="label_rot_best_loss">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLabel" name="label_ironclad_best_loss">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="QLabel" name="label_silent_best_loss">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="4">
+          <widget class="QLabel" name="label_defect_best_loss">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="4">
+          <widget class="QLabel" name="label_watcher_best_loss">
+           <property name="text">
+            <string>0-0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -754,6 +860,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
