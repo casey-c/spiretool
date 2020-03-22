@@ -28,6 +28,17 @@ void Options::browseSaves() {
     }
 }
 
+void Options::browseRuns() {
+    qDebug() << "browsing runs";
+
+    QString runsFolder = QFileDialog::getExistingDirectory();
+    qDebug() << "runsFolder?" << runsFolder;
+
+    if (!runsFolder.isEmpty()) {
+        ui->edit_runs->setText(runsFolder);
+    }
+}
+
 void Options::browsePotionFile() {
     qDebug() << "browsing potions";
 
@@ -44,6 +55,7 @@ void Options::saveAndExit() {
     // TODO: write to config file
     config->updateConfig(
                 this->ui->edit_saves->text(),
+                this->ui->edit_runs->text(),
                 this->ui->check_potion->isChecked(),
                 this->ui->edit_potion_out->text(),
                 this->ui->edit_potion_format->text()
@@ -67,6 +79,8 @@ void Options::loadPotionsFromConfig() {
 
 void Options::showWithConfig() {
     this->ui->edit_saves->setText(config->getSavesLocation());
+    this->ui->edit_runs->setText(config->getRunsLocation());
+
     loadPotionsFromConfig();
 
     this->show();

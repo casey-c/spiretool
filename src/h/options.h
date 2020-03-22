@@ -26,7 +26,9 @@ private:
 
 private slots:
     void browseSaves();
+    void browseRuns();
     void browsePotionFile();
+
     void saveAndExit();
     void onPotionToggle();
 };

@@ -22,7 +22,11 @@ SOURCES += \
     src/cpp/main.cpp \
     src/cpp/mainwindow.cpp \
     src/cpp/options.cpp \
-    src/cpp/tutorial.cpp
+    src/cpp/tutorial.cpp \
+    src/cpp/streaks.cpp \
+    src/cpp/utils.cpp \
+    src/cpp/statisticswindow.cpp \
+    src/cpp/referencewindow.cpp
 
 HEADERS += \
     src/h/about.h \
@@ -30,13 +34,19 @@ HEADERS += \
     src/h/data.h \
     src/h/mainwindow.h \
     src/h/options.h \
-    src/h/tutorial.h
+    src/h/tutorial.h \
+    src/h/streaks.h \
+    src/h/utils.h \
+    src/h/statisticswindow.h \
+    src/h/referencewindow.h
 
 FORMS += \
     src/ui/about.ui \
     src/ui/mainwindow.ui \
     src/ui/options.ui \
-    src/ui/tutorial.ui
+    src/ui/tutorial.ui \
+    src/ui/statisticswindow.ui \
+    src/ui/referencewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

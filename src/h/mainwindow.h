@@ -7,6 +7,8 @@
 #include "data.h"
 #include "tutorial.h"
 #include "about.h"
+#include "src/h/statisticswindow.h"
+#include "src/h/referencewindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,11 +28,20 @@ private:
     Options* optionsWindow;
     Tutorial* tutorialWindow;
     About* aboutWindow;
+    StatisticsWindow* statsWindow;
+    ReferenceWindow* referenceWindow;
 
     Data* data;
 
-    void updateData(QString file, QJsonObject obj);
+    void updateRecentSaveData(QString file, QJsonObject obj);
     void writePotionFile(int chance);
+
+    void refreshRecentSaves();
+    void refreshRuns();
+
+    void setFormattedCharacterName(QJsonObject obj, QString ugly);
+
+    QPixmap pixUnknown, pixIronclad, pixSilent, pixDefect, pixWatcher;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -38,6 +49,8 @@ private slots:
     void showOptionsWindow();
     void showTutorialWindow();
     void showAboutWindow();
+    void showStatsWindow();
+    void showReferenceWindow();
 
 private slots:
     void refresh();

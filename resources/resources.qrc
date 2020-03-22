@@ -6,4 +6,15 @@
         <file>logo128.png</file>
         <file>icon.ico</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>book.svg</file>
+        <file>help.svg</file>
+        <file>stats.svg</file>
+        <file>gear.svg</file>
+        <file>watcher.svg</file>
+        <file>defect.svg</file>
+        <file>silent.svg</file>
+        <file>ironclad.svg</file>
+        <file>unknown.svg</file>
+    </qresource>
 </RCC>

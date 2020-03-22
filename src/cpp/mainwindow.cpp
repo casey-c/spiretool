@@ -8,6 +8,8 @@
 #include <QDir>
 
 #include "src/h/options.h"
+#include "src/h/utils.h"
+#include "src/h/streaks.h"
 
 // fwd decl
 QJsonObject readSaveFileToObject(QString file);
@@ -15,9 +17,14 @@ QString getMostRecentlyUpdatedFile(QString directory);
 QString extractCharacterName(QString file);
 QString formatPotion(int chance, QString format);
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    pixUnknown(":/icons/unknown.svg"),
+    pixIronclad(":/icons/ironclad.svg"),
+    pixSilent(":/icons/silent.svg"),
+    pixDefect(":/icons/defect.svg"),
+    pixWatcher(":/icons/watcher.svg")
 {
     ui->setupUi(this);
 
@@ -27,27 +34,33 @@ MainWindow::MainWindow(QWidget *parent)
     optionsWindow = new Options(config);
     tutorialWindow = new Tutorial();
     aboutWindow = new About();
+    statsWindow = new StatisticsWindow(config);
+    referenceWindow = new ReferenceWindow();
 
-    // Refresh timer
+    ui->label_char_image->setPixmap(pixUnknown);
+
+    // Refresh imer
     QTimer* timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, QOverload<>::of(&MainWindow::refresh));
     timer->start(1000);
 }
 
+void MainWindow::refreshRecentSaves() {
+    QString savesDir = config->getSavesLocation();
+    QString recentSave = Utils::getMostRecentlyUpdatedFile(savesDir);
+
+    QString fullSavePath =  savesDir.endsWith("/") ?
+                QString("%1%2").arg(savesDir, recentSave) :
+                QString("%1/%2").arg(savesDir, recentSave) ;
+
+    if (!fullSavePath.isEmpty()) {
+        updateRecentSaveData(recentSave, Utils::readSaveFileToObject(fullSavePath));
+    }
+}
+
 void MainWindow::refresh(){
-    QString dir = config->getSavesLocation();
-    QString file = getMostRecentlyUpdatedFile(dir);
-
-    QString fullPath =  dir.endsWith("/") ?
-                QString("%1%2").arg(dir, file) :
-                QString("%1/%2").arg(dir, file) ;
-
-    if (!fullPath.isEmpty()) {
-        updateData(file, readSaveFileToObject(fullPath));
-    }
-    else {
-        qDebug() << "something went wrong";
-    }
+    refreshRecentSaves();
+    statsWindow->refreshRuns();
 }
 
 MainWindow::~MainWindow()
@@ -66,24 +79,16 @@ void MainWindow::showTutorialWindow() {
 void MainWindow::showAboutWindow() {
     aboutWindow->show();
 }
-
-QJsonObject readSaveFileToObject(QString file) {
-    QFile loadFile(file);
-
-    if (!loadFile.open(QIODevice::ReadOnly)) {
-        qWarning() << "ERROR: could not read save file";
-        return QJsonObject();
-    }
-    else {
-        QByteArray data = loadFile.readAll();
-        QJsonDocument loadDoc(QJsonDocument::fromJson(data));
-
-        return loadDoc.object();
-    }
+void MainWindow::showStatsWindow() {
+    statsWindow->show();
+}
+void MainWindow::showReferenceWindow() {
+    referenceWindow->show();
 }
 
-void MainWindow::updateData(QString file, QJsonObject obj) {
-    QString character = extractCharacterName(file);
+
+void MainWindow::updateRecentSaveData(QString file, QJsonObject obj) {
+    QString character = Utils::extractCharacterName(file);
 
     // Update the potion chance
     if (obj.contains("potion_chance")) {
@@ -97,14 +102,15 @@ void MainWindow::updateData(QString file, QJsonObject obj) {
     }
 
     // Try and include the floor number with the character name
-    if (obj.contains("floor_num")) {
-        int floor = obj["floor_num"].toInt();
-        QString combined = QString("%1 (floor %2)").arg(character).arg(floor);
-        this->ui->label_char->setText(combined);
-    }
-    else {
-        this->ui->label_char->setText(character);
-    }
+    setFormattedCharacterName(obj, character);
+//    if (obj.contains("floor_num")) {
+//        int floor = obj["floor_num"].toInt();
+//        QString combined = QString("%1 (floor %2)").arg(character).arg(floor);
+//        this->ui->label_char->setText(combined);
+//    }
+//    else {
+//        this->ui->label_char->setText(character);
+//    }
 
 
 
@@ -112,36 +118,10 @@ void MainWindow::updateData(QString file, QJsonObject obj) {
 }
 
 
-QString getMostRecentlyUpdatedFile(QString directory) {
-    QDir dir(directory);
-    if (dir.exists()) {
-        QStringList filters;
-        filters << "*.autosaveBETA";
-
-        dir.setSorting(QDir::Time);
-        dir.setNameFilters(filters);
-
-        QStringList l = dir.entryList();
-        if (l.size() >= 1) {
-            return l.first();
-        }
-    }
-    return QString();
-}
-
-QString extractCharacterName(QString file) {
-    QStringList list = file.split(".");
-    if (list.size() > 1) {
-        return list[0];
-    }
-    else {
-        return QString("Unknown Character");
-    }
-}
 
 void MainWindow::writePotionFile(int chance) {
     QString filename = config->getPotionOut();
-    QString format = formatPotion(chance, config->getPotionFormat());
+    QString format = Utils::formatPotion(chance, config->getPotionFormat());
     qDebug() << "Final format string: " << format;
 
     QFile file(filename);
@@ -154,27 +134,43 @@ void MainWindow::writePotionFile(int chance) {
     }
 }
 
-QString formatPotion(int chance, QString format) {
-    QString chance_string = QString("%1").arg(chance);
 
-    QStringList list = format.split("$");
-    QStringList* final = new QStringList();
+void MainWindow::setFormattedCharacterName(QJsonObject obj, QString ugly) {
+    QString formatted = QString();
+    QPixmap p;
 
-    for (QString s : list) {
-        final->push_back(s);
-        final->push_back(chance_string);
+    // Set the nicer string and pixmap image
+    if (ugly == "IRONCLAD") {
+      formatted = "Ironclad";
+      p = pixIronclad;
     }
-    final->pop_back();
-
-    QString combined = QString();
-
-    for (QString s : *final) {
-        combined = QString("%1%2").arg(combined).arg(s);
+    else if (ugly == "THE_SILENT") {
+      formatted = "Silent";
+      p = pixSilent;
+    }
+    else if (ugly == "DEFECT") {
+      formatted = "Defect";
+      p = pixDefect;
+    }
+    else if (ugly == "WATCHER") {
+      formatted = "Watcher";
+      p = pixWatcher;
+    }
+    else {
+      formatted = "Unknown Character";
+      p = pixUnknown;
     }
 
-    return combined;
+    // Try to add the floor number
+    if (obj.contains("floor_num")) {
+        int floor = obj["floor_num"].toInt();
+        formatted.append(QString(" (floor %1)").arg(floor));
+    }
+
+    // Update the text and image on the UI
+    ui->label_char_image->setPixmap(p);
+    ui->label_char->setText(formatted);
 }
-
 
 
 

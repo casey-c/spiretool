@@ -6,6 +6,8 @@
 
 Config::Config(QString filename) :
     configLocation(filename),
+    savesLocation("C:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/saves"),
+    runsLocation("C:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/runs"),
     potionWrite(true),
     potionOut("potions.txt"),
     potionFormat("$% !Potions")
@@ -14,8 +16,10 @@ Config::Config(QString filename) :
 
 }
 
-void Config::updateConfig(QString savesLocation, bool potionWrite, QString potionOut, QString potionFormat) {
+void Config::updateConfig(QString savesLocation, QString runsLocation, bool potionWrite, QString potionOut, QString potionFormat) {
     this->savesLocation = savesLocation;
+    this->runsLocation = runsLocation;
+
     this->potionWrite = potionWrite;
     this->potionOut = potionOut;
     this->potionFormat = potionFormat;
@@ -36,6 +40,9 @@ void Config::loadFromFile() {
 
             if (obj.contains("saves_folder")) {
                 this->savesLocation = obj["saves_folder"].toString();
+            }
+            if (obj.contains("runs_folder")) {
+                this->runsLocation = obj["runs_folder"].toString();
             }
             if (obj.contains("potions_write_to_file")) {
                 this->potionWrite = obj["potions_write_to_file"].toBool();
@@ -65,6 +72,7 @@ void Config::writeToFile() {
 
     QJsonObject obj;
     obj["saves_folder"] = this->savesLocation;
+    obj["runs_folder"] = this->runsLocation;
     obj["potions_write_to_file"] = this->potionWrite;
     obj["potions_file"] = this->potionOut;
     obj["potions_format"] = this->potionFormat;
