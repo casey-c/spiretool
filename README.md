@@ -1,6 +1,7 @@
 ## SpireTool
 
-![Screenshot](https://raw.githubusercontent.com/casey-c/spiretool/master/spiretool_screenshot.png "Screenshot")
+![Screenshot](https://raw.githubusercontent.com/casey-c/spiretool/master/spiretool_screenshot_v2.png "Main Window")
+![Screenshot](https://raw.githubusercontent.com/casey-c/spiretool/master/spiretool_screenshot_stats.png "Statistics Window")
 
 SpireTool is a graphical interface for looking at data extracted from Slay The Spire's beta autosave files. Currently, it supports the tracking of the percent chance each floor has for dropping a potion. It will constantly try and read the most recent autosave and display this information on the main screen. It can also automatically write a formatted string with this variable to a file for OBS to use as a "Text Source" or for other programs to use as needed. It was inspired originally by the twitch streamer [TerrenceMHS](https://twitch.tv/terrencemhs) as a way to automate the display of potion chance on his stream. This tool is still under development but has enough working features for an initial release:
 
