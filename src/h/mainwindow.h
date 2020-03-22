@@ -34,7 +34,7 @@ private:
     Data* data;
 
     void updateRecentSaveData(QString file, QJsonObject obj);
-    void writePotionFile(int chance);
+    void writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast);
 
     void refreshRecentSaves();
     void refreshRuns();

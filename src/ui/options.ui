@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>816</width>
-    <height>473</height>
+    <height>588</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,23 +30,71 @@
     <normaloff>:/logo/logo32.png</normaloff>:/logo/logo32.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="7" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="browse_saves">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
      </property>
      <property name="text">
-      <string>Uncommon Cards</string>
+      <string>Browse</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="0">
-    <widget class="QLabel" name="label_6">
+   <item row="13" column="1">
+    <widget class="QLineEdit" name="lineEdit_4">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_potion_out">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the file to write to. Defaults to potions.txt in the current directory (where you ran this .exe from). WARNING: this file will be overwritten / destroyed repeatedly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Output File:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point the program to SlayTheSpire's runs folder for it to track your run history statistics for all games you've played. Note that this data may be incomplete as it depends on what runs are saved in this folder. As of March 22 2020, saves made on different computers/installs will not all be downloaded automatically (they might not be stored in the Steam Cloud).&lt;/p&gt;&lt;p&gt;You should use the browse button to the right to make sure you get a valid path. With a Steam copy on Windows, this should default to something like:&lt;/p&gt;&lt;p&gt;C:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/runs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Runs Folder:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0" colspan="3">
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="edit_runs">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="0">
+    <widget class="QLabel" name="label_9">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -55,177 +103,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="edit_saves">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="1">
-    <widget class="QCheckBox" name="checkBox_3">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>Write to File Enabled</string>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="0">
-    <widget class="QLabel" name="label_8">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Rare Cards</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="0" colspan="3">
-    <widget class="Line" name="line_3">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QCheckBox" name="check_potion">
-     <property name="text">
-      <string>Write to File Enabled</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="1">
-    <widget class="QLineEdit" name="lineEdit_5">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_potion_format">
-     <property name="text">
-      <string>Format:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="1">
-    <widget class="QLineEdit" name="lineEdit_6">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLineEdit" name="edit_potion_out">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="2">
-    <widget class="QPushButton" name="browse_rare_out">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Browse</string>
-     </property>
-    </widget>
-   </item>
-   <item row="13" column="0">
-    <widget class="QLabel" name="label_10">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>Format:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QPushButton" name="browse_potion_out">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>Browse</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Potions</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="3">
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
-    <widget class="QLineEdit" name="edit_potion_format">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
-    <widget class="QCheckBox" name="checkBox_2">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>Write to File Enabled</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0">
+   <item row="14" column="0">
     <widget class="QLabel" name="label_7">
      <property name="enabled">
       <bool>false</bool>
@@ -235,18 +113,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Saves Folder:</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="15" column="2">
+   <item row="20" column="2">
     <widget class="QPushButton" name="button_cancel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -265,7 +132,24 @@
      </property>
     </widget>
    </item>
-   <item row="13" column="1">
+   <item row="9" column="1">
+    <widget class="QLineEdit" name="edit_potion_format_wbs">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="browse_runs">
+     <property name="text">
+      <string>Browse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="1">
     <widget class="QLineEdit" name="lineEdit_7">
      <property name="enabled">
       <bool>false</bool>
@@ -278,14 +162,17 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_potion_out">
-     <property name="text">
-      <string>Output File:</string>
+   <item row="7" column="1">
+    <widget class="QLineEdit" name="edit_potion_format">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
      </property>
     </widget>
    </item>
-   <item row="8" column="2">
+   <item row="13" column="2">
     <widget class="QPushButton" name="browse_uncommon_out">
      <property name="enabled">
       <bool>false</bool>
@@ -301,14 +188,121 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="3">
-    <widget class="Line" name="line_2">
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label_4">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Note: Mouse over the text on the left to get a description of the particular setting.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="3">
+    <widget class="Line" name="line">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="15" column="0" colspan="2">
+   <item row="5" column="1">
+    <widget class="QCheckBox" name="check_potion">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable/disable the writing of the potion chance to file. The main UI will continue to update, but no file is written if this setting is unchecked.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Write to File Enabled</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="1">
+    <widget class="QCheckBox" name="checkBox_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Write to File Enabled</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QCheckBox" name="check_wbs">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Override the default formatting when the current run has the &amp;quot;White Beast Statue&amp;quot; relic. With this relic, every combat is guaranteed to drop a potion. You may use the '$' character to replace it with the actual number, but it is basically meaningless as every combat reward will have a potion. Note that this override can be disabled by unchecking this box. Also note that in runs with both WBS and Sozu, the Sozu string above will take precedence if enabled. By default, the string here is &amp;quot;100% White Beast Statue&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>White Beast Format</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="2">
+    <widget class="QPushButton" name="browse_rare_out">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Browse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Uncommon Cards</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QLabel" name="label_potion_format">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You can gently format the output to fit your specific needs. The program will place all occurences of the '$' character with the particular integer corresponding to the potion chance. For example, the text:&lt;/p&gt;&lt;p&gt;Potions: $%&lt;/p&gt;&lt;p&gt;will write:&lt;/p&gt;&lt;p&gt;Potions: 40%&lt;/p&gt;&lt;p&gt;into the file specified above.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Format:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="0">
+    <widget class="QLabel" name="label_10">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Format:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLineEdit" name="edit_potion_format_sozu">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="20" column="0" colspan="2">
     <widget class="QPushButton" name="button_save">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -327,8 +321,61 @@
      </property>
     </widget>
    </item>
-   <item row="12" column="0">
-    <widget class="QLabel" name="label_9">
+   <item row="16" column="1">
+    <widget class="QCheckBox" name="checkBox_3">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Write to File Enabled</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is an optional feature intended mainly for OBS integration. It will write the format string in the forms below to a text file so that you can import a &amp;quot;Text Source&amp;quot; in OBS to display the value on stream. Note that the format string below allows streamers to customize their desired output.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Potions</string>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="1">
+    <widget class="QLineEdit" name="lineEdit_6">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QLabel" name="label_8">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Rare Cards</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0">
+    <widget class="QLabel" name="label_6">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -337,21 +384,35 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QPushButton" name="browse_saves">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>30</height>
-      </size>
+   <item row="8" column="0">
+    <widget class="QCheckBox" name="check_sozu">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Override the above formatting when the current run has Sozu. Like before, the '$' character is replaced with the potion chance (which remains an integer percentage that changes between floors). There will still be potion drops (the chances for each floor remain the same and you'll still see potions appear), but you may choose to have custom text instead since you cannot actually pick the potions up.&lt;/p&gt;&lt;p&gt;By default, the string is &amp;quot;0% Sozu&amp;quot; which indicates that even though there may be potion drops, you cannot pick any of them up. You can disable custom messages for having the Sozu relic by unchecking this box (it will revert to the original format). Note that this format string overrides the White Beast Statue string (as white beast statue puts the chance to 100% but you can't pick up potions).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
-      <string>Browse</string>
+      <string>Sozu Format:</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="8" column="1">
-    <widget class="QLineEdit" name="lineEdit_4">
+   <item row="2" column="0">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Point the program to SlayTheSpire's saves folder for it to track your current autosave. You should use the browse button to the right to make sure you get a valid path. With a Steam copy on Windows, this should default to something like:&lt;/p&gt;&lt;p&gt;C:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/saves&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>Saves Folder:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="14" column="1">
+    <widget class="QLineEdit" name="lineEdit_5">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -363,15 +424,21 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_2">
+   <item row="6" column="2">
+    <widget class="QPushButton" name="browse_potion_out">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
      <property name="text">
-      <string>Runs Folder:</string>
+      <string>Browse</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="edit_runs">
+   <item row="6" column="1">
+    <widget class="QLineEdit" name="edit_potion_out">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -380,10 +447,27 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="browse_runs">
-     <property name="text">
-      <string>Browse</string>
+   <item row="15" column="0" colspan="3">
+    <widget class="Line" name="line_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="edit_saves">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="Line" name="line_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
@@ -507,6 +591,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>check_sozu</sender>
+   <signal>clicked()</signal>
+   <receiver>Options</receiver>
+   <slot>onSozuToggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>407</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>check_wbs</sender>
+   <signal>clicked()</signal>
+   <receiver>Options</receiver>
+   <slot>onWbsToggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>407</x>
+     <y>291</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>browseSaves()</slot>
@@ -514,5 +630,7 @@
   <slot>onPotionToggle()</slot>
   <slot>browsePotionFile()</slot>
   <slot>browseRuns()</slot>
+  <slot>onSozuToggle()</slot>
+  <slot>onWbsToggle()</slot>
  </slots>
 </ui>

@@ -31,6 +31,9 @@ private slots:
 
     void saveAndExit();
     void onPotionToggle();
+
+    void onSozuToggle();
+    void onWbsToggle();
 };
 
 #endif // OPTIONS_H

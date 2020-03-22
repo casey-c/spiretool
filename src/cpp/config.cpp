@@ -10,19 +10,38 @@ Config::Config(QString filename) :
     runsLocation("C:/Program Files (x86)/Steam/steamapps/common/SlayTheSpire/runs"),
     potionWrite(true),
     potionOut("potions.txt"),
-    potionFormat("$% !Potions")
+    potionFormat("$% !Potions"),
+    sozuOverride(true),
+    wbsOverride(true),
+    sozuFormat("0% Sozu !Potions"),
+    wbsFormat("100% White Beast Statue !Potions")
 {
     this->loadFromFile();
 
 }
 
-void Config::updateConfig(QString savesLocation, QString runsLocation, bool potionWrite, QString potionOut, QString potionFormat) {
+void Config::updateConfig(QString savesLocation,
+                          QString runsLocation,
+                          bool potionWrite,
+                          QString potionOut,
+                          QString potionFormat,
+                          bool sozuOverride,
+                          bool wbsOverride,
+                          QString sozuFormat,
+                          QString wbsFormat
+                          ) {
     this->savesLocation = savesLocation;
     this->runsLocation = runsLocation;
 
     this->potionWrite = potionWrite;
     this->potionOut = potionOut;
     this->potionFormat = potionFormat;
+
+    this->sozuOverride = sozuOverride;
+    this->wbsOverride = wbsOverride;
+
+    this->sozuFormat = sozuFormat;
+    this->wbsFormat = wbsFormat;
 
     writeToFile();
 }
@@ -38,21 +57,26 @@ void Config::loadFromFile() {
             QJsonDocument doc = QJsonDocument::fromJson(data);
             QJsonObject obj = doc.object();
 
-            if (obj.contains("saves_folder")) {
+            if (obj.contains("saves_folder"))
                 this->savesLocation = obj["saves_folder"].toString();
-            }
-            if (obj.contains("runs_folder")) {
+            if (obj.contains("runs_folder"))
                 this->runsLocation = obj["runs_folder"].toString();
-            }
-            if (obj.contains("potions_write_to_file")) {
+            if (obj.contains("potions_write_to_file"))
                 this->potionWrite = obj["potions_write_to_file"].toBool();
-            }
-            if (obj.contains("potions_file")) {
+            if (obj.contains("potions_file"))
                 this->potionOut = obj["potions_file"].toString();
-            }
-            if (obj.contains("potions_format")) {
+            if (obj.contains("potions_format"))
                 this->potionFormat = obj["potions_format"].toString();
-            }
+
+            if (obj.contains("sozu_override"))
+                this->sozuOverride = obj["sozu_override"].toBool();
+            if (obj.contains("wbs_override"))
+                this->wbsOverride = obj["wbs_override"].toBool();
+
+            if (obj.contains("sozu_format"))
+                this->sozuFormat = obj["sozu_format"].toString();
+            if (obj.contains("wbs_format"))
+                this->wbsFormat = obj["wbs_format"].toString();
 
             configFile.close();
         }
@@ -76,6 +100,11 @@ void Config::writeToFile() {
     obj["potions_write_to_file"] = this->potionWrite;
     obj["potions_file"] = this->potionOut;
     obj["potions_format"] = this->potionFormat;
+
+    obj["sozu_override"] = this->sozuOverride;
+    obj["wbs_override"] = this->wbsOverride;
+    obj["sozu_format"] = this->sozuFormat;
+    obj["wbs_format"] = this->wbsFormat;
 
     QFile configFile(configLocation);
     if (configFile.open(QFile::Truncate | QFile::WriteOnly)) {

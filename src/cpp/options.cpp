@@ -58,7 +58,11 @@ void Options::saveAndExit() {
                 this->ui->edit_runs->text(),
                 this->ui->check_potion->isChecked(),
                 this->ui->edit_potion_out->text(),
-                this->ui->edit_potion_format->text()
+                this->ui->edit_potion_format->text(),
+                this->ui->check_sozu->isChecked(),
+                this->ui->check_wbs->isChecked(),
+                this->ui->edit_potion_format_sozu->text(),
+                this->ui->edit_potion_format_wbs->text()
                 );
 
     this->close();
@@ -75,6 +79,18 @@ void Options::loadPotionsFromConfig() {
     this->ui->edit_potion_out->setEnabled(potionEnabled);
     this->ui->edit_potion_format->setEnabled(potionEnabled);
     this->ui->browse_potion_out->setEnabled(potionEnabled);
+
+    // Sozu & WBS
+    this->ui->edit_potion_format_sozu->setText(config->getSozuFormat());
+    this->ui->edit_potion_format_wbs->setText(config->getWbsFormat());
+    this->ui->check_sozu->setChecked(config->getSozuOverride());
+    this->ui->check_wbs->setChecked(config->getWbsOverride());
+
+    this->ui->edit_potion_format_sozu->setEnabled(potionEnabled && config->getSozuOverride());
+    this->ui->edit_potion_format_wbs->setEnabled(potionEnabled && config->getWbsOverride());
+    this->ui->check_sozu->setEnabled(potionEnabled);
+    this->ui->check_wbs->setEnabled(potionEnabled);
+
 }
 
 void Options::showWithConfig() {
@@ -94,4 +110,59 @@ void Options::onPotionToggle() {
     this->ui->edit_potion_out->setEnabled(potionEnabled);
     this->ui->edit_potion_format->setEnabled(potionEnabled);
     this->ui->browse_potion_out->setEnabled(potionEnabled);
+
+    // sozu / wbs
+    this->ui->check_sozu->setEnabled(potionEnabled);
+    this->ui->check_wbs->setEnabled(potionEnabled);
+
+    // TODO: fix the logic here. (don't want to think so hard right now)
+    this->ui->edit_potion_format_sozu->setEnabled(potionEnabled &&
+                                                  this->ui->check_sozu->isChecked());
+    this->ui->edit_potion_format_wbs->setEnabled(potionEnabled &&
+                                                 this->ui->check_wbs->isChecked());
+
+//    if (potionEnabled) {
+//        this->ui->edit_potion_format_sozu->setEnabled(config->getSozuOverride());
+//        this->ui->edit_potion_format_wbs->setEnabled(config->getWbsOverride());
+//    }
+//    else {
+//        this->ui->edit_potion_format_sozu->setEnabled(false);
+//        this->ui->edit_potion_format_wbs->setEnabled(false);
+//    }
+
 }
+
+void Options::onSozuToggle() {
+    this->ui->edit_potion_format_sozu->setEnabled(this->ui->check_sozu->isChecked());
+}
+
+void Options::onWbsToggle() {
+    this->ui->edit_potion_format_wbs->setEnabled(this->ui->check_wbs->isChecked());
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
