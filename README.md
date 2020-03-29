@@ -20,6 +20,9 @@ To use this program, head over to the https://github.com/casey-c/spiretool/relea
 * Tracking other statistics
 * Less minimalist / ugly interface
 
+Parsing through the run data should allow the collection of various statistics. One goal is to visualize these in a useful and appealing way. The following mockup-image is something I would like to have in the program, but may be difficult due to the custom graphics code I would need to write for the histogram visualization:
+![Screenshot](https://raw.githubusercontent.com/casey-c/spiretool/master/card_detail.png "Card Statistics")
+
 ### Building from source
 Current plans are to release Windows builds as I am not sure how to produce standalone executables for other systems yet. To build for your specific platform: clone this repository, open it in QtCreator, and build. No additional libraries beyond Qt should be needed to compile.
 
