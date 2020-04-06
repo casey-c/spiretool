@@ -13,8 +13,8 @@ Config::Config(QString filename) :
     potionFormat("$% !Potions"),
     sozuOverride(true),
     wbsOverride(true),
-    sozuFormat("0% Sozu !Potions"),
-    wbsFormat("100% White Beast Statue !Potions")
+    sozuFormat("0% !Potions"),
+    wbsFormat("100% !Potions")
 {
     this->loadFromFile();
 
@@ -86,14 +86,12 @@ void Config::loadFromFile() {
     }
     else {
         qDebug() << "error: no config found";
-        //TODO: open tutorial?
+        //TODO: open tutorial for first boot?
     }
 
 }
 
 void Config::writeToFile() {
-    // TODO
-
     QJsonObject obj;
     obj["saves_folder"] = this->savesLocation;
     obj["runs_folder"] = this->runsLocation;
