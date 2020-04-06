@@ -122,3 +122,201 @@ bool Utils::docGetBoolOr(QJsonObject obj, QString key, bool def) {
     else
         return def;
 }
+
+
+double Utils::calculateCommonProb(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths) {
+//double Utils::calculateCommonProb(int cbr, bool, bool, bool) {
+    // TODO: add support for relics (ignored for now)
+    int p = 100 - (Utils::calculateUncommonProb(cbr, hasQuestionCard, hasBustedCrown, hasNloths) + Utils::calculateRareProb(cbr, hasQuestionCard, hasBustedCrown, hasNloths));
+
+    // TODO: math for multiple cards
+
+    return (double)p;
+}
+
+double Utils::calculateRareProb(int cbr, bool, bool, bool) {
+    // TODO: add support for relics (ignored for now)
+    int rare_chance = 3;
+
+    int p = rare_chance - cbr;
+    if (p < 0)
+        p = 0;
+
+//    int p = 0;
+//    for (int i = cbr; i < cbr + 100; ++i) {
+//        if (i < rare_chance)
+//            ++p;
+//        else
+//            break;
+//    }
+
+    // TODO: math for multiple cards
+
+    return (double)p;
+}
+
+double Utils::calculateUncommonProb(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths) {
+    // TODO: add support for relics (ignored for now)
+    int rare_chance = 3;
+    int uncommon_chance = 37;
+    int combined_chance = rare_chance + uncommon_chance;
+
+    int p = (combined_chance - cbr) - Utils::calculateRareProb(cbr, hasQuestionCard, hasBustedCrown, hasNloths);
+
+//    int p = 0;
+//    for (int i = cbr; i < cbr + 100; ++i) {
+//        if (i < combined_chance) {
+//            if (i >= rare_chance)
+//              ++p;
+//        }
+//        else
+//            break;
+//    }
+
+    // TODO: math for multiple cards
+
+    return (double)p;
+
+}
+
+enum RARITY {
+    COMMON,
+    UNCOMMON,
+    RARE
+};
+
+double calcProbSequence(QVector<RARITY> sequence, int cbr) {
+    double final = 1.0;
+
+    qDebug() << "Starting CBR:" << cbr;
+
+    int rare_chance = 3;
+    int uncommon_chance = 37;
+    int combined_chance = rare_chance + uncommon_chance;
+
+    for (RARITY r : sequence) {
+        double pr_rare = ((double)rare_chance - (double)cbr) / 100.0;
+        if (pr_rare < 0.0) pr_rare = 0.0;
+
+        double pr_uncommon = (((double)combined_chance - (double)cbr) / 100.0) - pr_rare;
+        double pr_common = 1.0 - (pr_rare + pr_uncommon);
+
+//        qDebug() << "RARITY:" << r
+//                 << "pr_common:" << pr_common
+//                 << "pr_uncommon:" << pr_uncommon
+//                 << "pr_rare:" << pr_rare
+//                 << "cbr:" << cbr
+//                    ;
+
+        switch(r) {
+        case COMMON:
+            final *= pr_common;
+            cbr -= 1;
+            if (cbr < -40)
+                cbr = -40;
+            break;
+        case UNCOMMON:
+            final *= pr_uncommon;
+            break;
+        case RARE:
+            final *= pr_rare;
+            cbr = 5;
+            break;
+        }
+    }
+
+    return final;
+}
+
+RARITY rarityFromInt(int i) {
+    if (i == 0)
+        return COMMON;
+    else if (i == 1)
+        return UNCOMMON;
+    else
+        return RARE;
+}
+
+QVector<RARITY> rarity3Vec(int i, int j, int k) {
+    QVector<RARITY> result;
+    result.push_back(rarityFromInt(i));
+    result.push_back(rarityFromInt(j));
+    result.push_back(rarityFromInt(k));
+    return result;
+}
+
+double calcAtLeast1Of3(int cbr, RARITY r) {
+    double final_prob = 0.0;
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < 3; ++k) {
+                qDebug() << "Sequence:" << i << j << k;
+                QVector<RARITY> sequence = rarity3Vec(i, j, k);
+
+                if (!sequence.contains(r)) {
+                    qDebug() << "skippin";
+                    continue;
+                }
+                else {
+                    double p = calcProbSequence(sequence, cbr);
+                    qDebug() << "prob of sequence:" << p;
+
+                    final_prob += p;
+                }
+
+            }
+        }
+    }
+
+    return final_prob;
+}
+
+// TODO : implement relic interactions
+double Utils::calculateAtLeast1Common(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths) {
+    return calcAtLeast1Of3(cbr, COMMON);
+}
+
+double Utils::calculateAtLeast1Uncommon(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths) {
+    return calcAtLeast1Of3(cbr, UNCOMMON);
+}
+
+double Utils::calculateAtLeast1Rare(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths) {
+    return calcAtLeast1Of3(cbr, RARE);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

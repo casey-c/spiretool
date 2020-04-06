@@ -19,6 +19,15 @@ public:
     static long docGetLongOr(QJsonObject obj, QString key, long def);
     static bool docGetBoolOr(QJsonObject obj, QString key, bool def);
 
+
+    static double calculateCommonProb(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);
+    static double calculateUncommonProb(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);
+    static double calculateRareProb(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);
+
+    static double calculateAtLeast1Rare(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);
+    static double calculateAtLeast1Uncommon(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);
+    static double calculateAtLeast1Common(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);
+
 private:
     Utils() {}
 };

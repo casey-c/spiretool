@@ -34,11 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
     statsWindow = new StatisticsWindow(config);
     referenceWindow = new ReferenceWindow();
 
-    cardDatabase = new CardDatabase();
-    cardDatabase->print();
+//    cardDatabase = new CardDatabase();
+//    cardDatabase->print();
 
-    //ui->label_char_image->setPixmap(pixUnknown);
-    ui->label_char_image->setPixmap(ResourceManager::getInstance().getUnknownPixmap());
+    // Set the default unknown image
+    //ui->label_char_image->setPixmap(ResourceManager::getInstance().getUnknownPixmap());
 
     // Refresh imer
     QTimer* timer = new QTimer(this);
@@ -86,22 +86,10 @@ void MainWindow::showReferenceWindow() {
     referenceWindow->show();
 }
 
-//
-void MainWindow::updateCurrentSaveData(QString fullSavePath) {
-    // Ensure the current run is valid / updates are made
-    if (current_run == nullptr)
-        current_run = Run::build(fullSavePath);
-    else if (!current_run->refresh()) // no changes from before
-        return;
 
-    // Check if Run::build failed
-    if (current_run == nullptr) {
-        qWarning() << "ERROR: save file still couldn't load" << fullSavePath;
-        return;
-    }
-
+void MainWindow::updateCurrentPotionInfo() {
     // Update the potion chance
-    int potion_chance = current_run->getPotionChance();
+    int potion_chance = current_run->getPotionChance() + 40;
     int floor = current_run->getCurrentFloor();
 
     // TODO: verify this patch works
@@ -131,10 +119,39 @@ void MainWindow::updateCurrentSaveData(QString fullSavePath) {
     if (config->getPotionWrite()) {
       writePotionFile(potion_chance, current_run->hasSozuRelic(), current_run->hasWhiteBeastStatue());
     }
+}
+
+void MainWindow::updateCurrentCardChances() {
+    int cbr = current_run->getCBR();
+
+    double rareChance = Utils::calculateAtLeast1Rare(cbr, false, false, false) * 100.0;
+    double uncommonChance = Utils::calculateAtLeast1Uncommon(cbr, false, false, false) * 100.0;
+    double commonChance = Utils::calculateAtLeast1Common(cbr, false, false, false) * 100.0;
+
+    ui->label_cc->setText(QString("%1\%").arg(QString::number(commonChance, 'f', 2)));
+    ui->label_uc->setText(QString("%1\%").arg(QString::number(uncommonChance, 'f', 2)));
+    ui->label_rc->setText(QString("%1\%").arg(QString::number(rareChance, 'f', 2)));
+
+}
+
+void MainWindow::updateCurrentSaveData(QString fullSavePath) {
+    // Ensure the current run is valid / updates are made
+    if (current_run == nullptr)
+        current_run = Run::build(fullSavePath);
+    else if (!current_run->refresh()) // no changes from before
+        return;
+
+    // Check if Run::build failed
+    if (current_run == nullptr) {
+        qWarning() << "ERROR: save file still couldn't load" << fullSavePath;
+        return;
+    }
 
     // Update GUI text
     ui->label_char->setText(current_run->getCharNameAndFloor());
     ui->label_char_image->setPixmap(current_run->getPixmap());
+    updateCurrentPotionInfo();
+    updateCurrentCardChances();
 }
 
 

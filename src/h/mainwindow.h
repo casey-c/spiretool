@@ -37,6 +37,9 @@ private:
     Run* current_run;
 
     void updateCurrentSaveData(QString fullSavePath);
+    void updateCurrentPotionInfo();
+    void updateCurrentCardChances();
+
     void writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast);
 
     void refreshRecentSaves();
