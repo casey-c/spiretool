@@ -9,6 +9,9 @@
 #include "about.h"
 #include "src/h/statisticswindow.h"
 #include "src/h/referencewindow.h"
+#include "src/h/carddatabase.h"
+
+#include "src/h/run.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,9 +34,14 @@ private:
     StatisticsWindow* statsWindow;
     ReferenceWindow* referenceWindow;
 
-    Data* data;
+    CardDatabase* cardDatabase;
 
-    void updateRecentSaveData(QString file, QJsonObject obj);
+    //Data* data;
+    Run* current_run;
+
+    //void updateRecentSaveData(QString file, QJsonObject obj);
+    void updateCurrentSaveData(QString fullSavePath);
+
     void writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast);
 
     void refreshRecentSaves();
@@ -41,7 +49,7 @@ private:
 
     void setFormattedCharacterName(QJsonObject obj, QString ugly);
 
-    QPixmap pixUnknown, pixIronclad, pixSilent, pixDefect, pixWatcher;
+    //QPixmap pixUnknown, pixIronclad, pixSilent, pixDefect, pixWatcher;
 
 ////////////////////////////////////////////////////////////////////////////////
 

@@ -13,6 +13,12 @@ public:
     static QString formatPotion(int chance, QString format);
     static QStringList getFilesSortedByNameEarliestFirst(QString directory);
 
+    static QString docGetQStringOr(QJsonObject obj, QString key, QString def);
+    static int docGetIntOr(QJsonObject obj, QString key, int def);
+    static double docGetDoubleOr(QJsonObject obj, QString key, double def);
+    static long docGetLongOr(QJsonObject obj, QString key, long def);
+    static bool docGetBoolOr(QJsonObject obj, QString key, bool def);
+
 private:
     Utils() {}
 };

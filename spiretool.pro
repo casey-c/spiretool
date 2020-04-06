@@ -16,7 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/cpp/resourcemanager.cpp \
+    src/cpp/run.cpp \
+    src/cpp/cardstatistics.cpp \
     src/cpp/about.cpp \
+    src/cpp/card.cpp \
+    src/cpp/carddatabase.cpp \
     src/cpp/config.cpp \
     src/cpp/data.cpp \
     src/cpp/main.cpp \
@@ -29,7 +34,12 @@ SOURCES += \
     src/cpp/referencewindow.cpp
 
 HEADERS += \
+    src/h/resourcemanager.h \
+    src/h/run.h \
+    src/h/cardstatistics.h \
     src/h/about.h \
+    src/h/card.h \
+    src/h/carddatabase.h \
     src/h/config.h \
     src/h/data.h \
     src/h/mainwindow.h \

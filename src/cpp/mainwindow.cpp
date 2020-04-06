@@ -12,6 +12,8 @@
 #include "src/h/utils.h"
 #include "src/h/streaks.h"
 
+#include "src/h/resourcemanager.h"
+
 // fwd decl
 QJsonObject readSaveFileToObject(QString file);
 QString getMostRecentlyUpdatedFile(QString directory);
@@ -21,24 +23,28 @@ QString formatPotion(int chance, QString format);
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    pixUnknown(":/icons/unknown.svg"),
-    pixIronclad(":/icons/ironclad.svg"),
-    pixSilent(":/icons/silent.svg"),
-    pixDefect(":/icons/defect.svg"),
-    pixWatcher(":/icons/watcher.svg")
+    current_run(nullptr)
+//    pixUnknown(":/icons/unknown.svg"),
+//    pixIronclad(":/icons/ironclad.svg"),
+//    pixSilent(":/icons/silent.svg"),
+//    pixDefect(":/icons/defect.svg"),
+//    pixWatcher(":/icons/watcher.svg")
 {
     ui->setupUi(this);
-
     config = new Config("config.json");
 
-    data = new Data();
+    //data = new Data();
     optionsWindow = new Options(config);
     tutorialWindow = new Tutorial();
     aboutWindow = new About();
     statsWindow = new StatisticsWindow(config);
     referenceWindow = new ReferenceWindow();
 
-    ui->label_char_image->setPixmap(pixUnknown);
+    cardDatabase = new CardDatabase();
+    cardDatabase->print();
+
+    //ui->label_char_image->setPixmap(pixUnknown);
+    ui->label_char_image->setPixmap(ResourceManager::getInstance().getUnknownPixmap());
 
     // Refresh imer
     QTimer* timer = new QTimer(this);
@@ -54,9 +60,27 @@ void MainWindow::refreshRecentSaves() {
                 QString("%1%2").arg(savesDir, recentSave) :
                 QString("%1/%2").arg(savesDir, recentSave) ;
 
-    if (!fullSavePath.isEmpty()) {
-        updateRecentSaveData(recentSave, Utils::readSaveFileToObject(fullSavePath));
-    }
+    // Attempt to reload if the previous file didn't open correctly
+//    if (current_run == nullptr)
+//        current_run = Run::build(fullSavePath);
+//    if (current_run == nullptr)
+//        qWarning() << "ERROR: current_run still couldn't load" << fullSavePath;
+
+    // Refresh if necessary
+    updateCurrentSaveData(fullSavePath);
+
+
+//    if (current_run == nullptr) {
+//        current_run = Run::build(fullSavePath);
+//        if (current_run == nullptr)
+//            qDebug() << "current run still null";
+//        else
+//            current_run->print();
+//    }
+
+//    if (!fullSavePath.isEmpty()) {
+//        updateRecentSaveData(recentSave, Utils::readSaveFileToObject(fullSavePath));
+//    }
 }
 
 void MainWindow::refresh(){
@@ -87,7 +111,64 @@ void MainWindow::showReferenceWindow() {
     referenceWindow->show();
 }
 
+//
+void MainWindow::updateCurrentSaveData(QString fullSavePath) {
+    // Ensure the current run is valid / updates are made
+    if (current_run == nullptr)
+        current_run = Run::build(fullSavePath);
+    else if (!current_run->refresh()) // no changes from before
+        return;
 
+    // Check if Run::build failed
+    if (current_run == nullptr) {
+        qWarning() << "ERROR: save file still couldn't load" << fullSavePath;
+        return;
+    }
+
+//    if (current_run == nullptr || !current_run->refresh()) {
+//        qDebug() << "update save data null or no refresh";
+//        return;
+//    }
+
+    // Update the potion chance
+    int potion_chance = current_run->getPotionChance();
+    int floor = current_run->getCurrentFloor();
+
+    // TODO: verify this patch works
+    // boss chest floors
+    if (floor == 17 || floor == 34 || floor == 52) {
+      potion_chance = 40;
+    }
+    // boss fight floors (post fight only)
+    else if (current_run->isPostCombat() && (floor == 16 || floor == 33 || floor == 51)) {
+        potion_chance = 40;
+    }
+
+    // BUGFIX: Special Relics (Sozu/WhiteBeast)
+    if (current_run->hasSozuRelic()) {
+      //potion_chance = 0;
+      this->ui->label_pc->setText(QString("0% (SOZU)"));
+    }
+    else if (current_run->hasWhiteBeastStatue()) {
+      //potion_chance = 100;
+      this->ui->label_pc->setText(QString("100% (WhiteBeastStatue)"));
+    }
+    else {
+      this->ui->label_pc->setText(QString("%1\%").arg(potion_chance));
+    }
+
+    // Write to file if desired
+    if (config->getPotionWrite()) {
+      writePotionFile(potion_chance, current_run->hasSozuRelic(), current_run->hasWhiteBeastStatue());
+    }
+
+    // Update GUI text
+    ui->label_char->setText(current_run->getCharNameAndFloor());
+    ui->label_char_image->setPixmap(current_run->getPixmap());
+}
+
+
+#if 0
 void MainWindow::updateRecentSaveData(QString file, QJsonObject obj) {
     QString character = Utils::extractCharacterName(file);
 
@@ -99,8 +180,14 @@ void MainWindow::updateRecentSaveData(QString file, QJsonObject obj) {
         // (one floor earlier than the save file displays)
         if (obj.contains("current_floor")) {
             int floor = obj["current_floor"].toInt();
+
+            // TODO: verify this patch works
             if (floor == 17 || floor == 34 || floor == 52) {
                 chance = 40;
+            }
+            else if (floor == 16 || floor == 33 || floor == 51) {
+                if (obj.contains("post_combat") && obj["post_combat"].toBool())
+                  chance = 40;
             }
         }
 
@@ -154,11 +241,8 @@ void MainWindow::updateRecentSaveData(QString file, QJsonObject obj) {
     //    else {
     //        this->ui->label_char->setText(character);
     //    }
-
-
-
-
 }
+#endif
 
 
 
@@ -187,11 +271,12 @@ void MainWindow::writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast) {
 }
 
 
+#if 0
 void MainWindow::setFormattedCharacterName(QJsonObject obj, QString ugly) {
   QString formatted = QString();
   QPixmap p;
 
-  // Set the nicer string and pixmap image
+  // Set the nicer striUpdateng and pixmap image
   if (ugly == "IRONCLAD") {
     formatted = "Ironclad";
     p = pixIronclad;
@@ -223,6 +308,7 @@ void MainWindow::setFormattedCharacterName(QJsonObject obj, QString ugly) {
   ui->label_char_image->setPixmap(p);
   ui->label_char->setText(formatted);
 }
+#endif
 
 
 

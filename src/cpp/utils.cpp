@@ -84,3 +84,41 @@ QStringList Utils::getFilesSortedByNameEarliestFirst(QString directory) {
 
     return QStringList();
 }
+
+QString Utils::docGetQStringOr(QJsonObject obj, QString key, QString def) {
+    if (obj.contains(key) && obj[key].isString())
+        return obj[key].toString();
+    else {
+        //qDebug() << "ERROR: \n" << obj << "\ndoes not contain " << key;
+        qDebug() << "ERROR: " << "does not contain " << key;
+        return def;
+    }
+}
+
+double Utils::docGetDoubleOr(QJsonObject obj, QString key, double def) {
+    if (obj.contains(key) && obj[key].isDouble())
+        return obj[key].toDouble();
+    else
+        return def;
+}
+
+long Utils::docGetLongOr(QJsonObject obj, QString key, long def) {
+    if (obj.contains(key) && obj[key].isDouble())
+        return (long)obj[key].toDouble();
+    else
+        return def;
+}
+
+int Utils::docGetIntOr(QJsonObject obj, QString key, int def) {
+    if (obj.contains(key))
+        return obj[key].toInt();
+    else
+        return def;
+}
+
+bool Utils::docGetBoolOr(QJsonObject obj, QString key, bool def) {
+    if (obj.contains(key) && obj[key].isBool())
+        return obj[key].toBool();
+    else
+        return def;
+}
