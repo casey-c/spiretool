@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    cardDatabase->print();
 
     // Set the default unknown image
-    //ui->label_char_image->setPixmap(ResourceManager::getInstance().getUnknownPixmap());
+    ui->label_char_image->setPixmap(ResourceManager::getInstance().getUnknownPixmap());
 
     // Refresh imer
     QTimer* timer = new QTimer(this);
