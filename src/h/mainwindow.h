@@ -2,15 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "options.h"
-#include "config.h"
-#include "data.h"
-#include "tutorial.h"
-#include "about.h"
+#include "src/h/options.h"
+#include "src/h/config.h"
+#include "src/h/tutorial.h"
+#include "src/h/about.h"
 #include "src/h/statisticswindow.h"
 #include "src/h/referencewindow.h"
 #include "src/h/carddatabase.h"
-
 #include "src/h/run.h"
 
 QT_BEGIN_NAMESPACE
@@ -36,20 +34,13 @@ private:
 
     CardDatabase* cardDatabase;
 
-    //Data* data;
     Run* current_run;
 
-    //void updateRecentSaveData(QString file, QJsonObject obj);
     void updateCurrentSaveData(QString fullSavePath);
-
     void writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast);
 
     void refreshRecentSaves();
     void refreshRuns();
-
-    void setFormattedCharacterName(QJsonObject obj, QString ugly);
-
-    //QPixmap pixUnknown, pixIronclad, pixSilent, pixDefect, pixWatcher;
 
 ////////////////////////////////////////////////////////////////////////////////
 

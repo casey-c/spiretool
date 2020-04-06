@@ -32,7 +32,7 @@ public:
     QString getCharNameAndFloor();
     QPixmap getPixmap();
 
-    // Filter support
+    // Filter support (usage TODO in future update)
     bool ascLevelE(int x) { return asc_level == x; }
     bool ascLevelL(int x) { return asc_level < x; }
     bool ascLevelLE(int x) { return asc_level <= x; }

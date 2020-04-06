@@ -23,7 +23,6 @@ SOURCES += \
     src/cpp/card.cpp \
     src/cpp/carddatabase.cpp \
     src/cpp/config.cpp \
-    src/cpp/data.cpp \
     src/cpp/main.cpp \
     src/cpp/mainwindow.cpp \
     src/cpp/options.cpp \
@@ -41,7 +40,6 @@ HEADERS += \
     src/h/card.h \
     src/h/carddatabase.h \
     src/h/config.h \
-    src/h/data.h \
     src/h/mainwindow.h \
     src/h/options.h \
     src/h/tutorial.h \
