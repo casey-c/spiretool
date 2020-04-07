@@ -25,8 +25,15 @@ public:
 
     bool isPostCombat() { return post_combat; }
 
+    // Relic getters
     bool hasSozuRelic() { return hasSozu; }
     bool hasWhiteBeastStatue() { return hasWBS; }
+    bool hasQuestionCard() { return hasQC; }
+    bool hasBustedCrown() { return hasBC; }
+    bool hasPrayerWheel() { return hasPW; }
+    bool hasNloths() { return hasNL; }
+
+    bool differentFile(QString other) { return filename != other; }
 
     // Special formatted getters
     QString getCharNameAndFloor();
@@ -61,9 +68,10 @@ private:
     int potion_chance;
     int cbr;
 
+    // relics
     QVector<QString> current_relics;
-    bool hasSozu;
-    bool hasWBS;
+
+    bool hasSozu, hasWBS, hasQC, hasBC, hasPW, hasNL;
 
     //QVector<CardDetails*> cards;
     //QVector<RelicDetails*> relics;

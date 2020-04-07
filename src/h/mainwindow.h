@@ -41,6 +41,8 @@ private:
     void updateCurrentCardChances();
 
     void writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast);
+    void writeUncFile(QString chance);
+    void writeRareFile(QString chance);
 
     void refreshRecentSaves();
     void refreshRuns();

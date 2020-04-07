@@ -23,17 +23,24 @@ private:
     Config* config;
 
     void loadPotionsFromConfig();
+    void loadCardRaritiesFromConfig();
 
 private slots:
     void browseSaves();
     void browseRuns();
     void browsePotionFile();
 
+    void browseUnc();
+    void browseRare();
+
     void saveAndExit();
     void onPotionToggle();
 
     void onSozuToggle();
     void onWbsToggle();
+
+    void onUncToggle();
+    void onRareToggle();
 };
 
 #endif // OPTIONS_H

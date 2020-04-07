@@ -30,7 +30,11 @@ Run::Run(QString filename) :
   char_name("Unknown Character"),
   post_combat(false),
   hasSozu(false),
-  hasWBS(false)
+  hasWBS(false),
+  hasQC(false),
+  hasBC(false),
+  hasPW(false),
+  hasNL(false)
 {
 
 }
@@ -95,10 +99,12 @@ bool Run::refresh() {
           for (; itr != relics.end(); ++itr) {
               QString r = itr->toString();
               current_relics.push_back(r);
-              if (r == "White Beast Statue")
-                hasWBS = true;
-              else if (r == "Sozu")
-                hasSozu = true;
+              if (r == "White Beast Statue") hasWBS = true;
+              else if (r == "Sozu") hasSozu = true;
+              else if (r == "Question Card") hasQC = true;
+              else if (r == "Busted Crown") hasBC = true;
+              else if (r == "Prayer Wheel") hasPW = true;
+              else if (r == "Nloth's Gift") hasNL = true;
           }
       }
 

@@ -387,7 +387,7 @@
      </widget>
     </item>
     <item row="3" column="0" colspan="2">
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="label_card_info">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -405,10 +405,10 @@
        </font>
       </property>
       <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Work in Progress&lt;/p&gt;&lt;p&gt;Reports the probability of seeing a certain rarity of card within the next combat rewards screen. No support yet for relics that alter card counts (Prayer Wheel, Busted Crown, Question Card) or probabilities (N'loths Gift).&lt;/p&gt;&lt;p&gt;The chance shown is the probability that you will see at least one card of the given rarity within the next three cards. This chance is altered each time you see a common card (including within the same rewards screen), does not change upon seeing an uncommon card, and resets back to the default (0% without specific relics) upon rolling a rare card or starting a new act.&lt;/p&gt;&lt;p&gt;Trivia: &lt;/p&gt;&lt;p&gt;* It is mathematically impossible to see a rare card on the first combat reward screen of each act (excluding relic interactions).&lt;/p&gt;&lt;p&gt;* Rare cards on offer will never be upgraded unless you have the corresponding egg relic.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Work in Progress - Numbers may be inaccurate or misleading&lt;/p&gt;&lt;p&gt;Note: due to the way the save files work, these values will not update after a reward screen (i.e. at the fight rewards of the current floor / while you're looking at a card selection screen) until you proceed to the next floor.&lt;/p&gt;&lt;p&gt;This section reports the probability of seeing a certain rarity of card within the next combat rewards screen. It will compute the probability by brute force checking all possibilties of the next [x] cards. This number [x] (number of cards seen) is modified by the current relics (e.g. having Prayer Wheel will give double the amount of cards seen per combat reward).&lt;/p&gt;&lt;p&gt;The game stores an integer that sways the chance of seeing a rare card based on the number of common cards seen. Seeing more common cards = better chances to find a rare. This influencer is reset upon rolling a rare or starting a new act and gets more favorable the more commons you see.&lt;/p&gt;&lt;p&gt;Each card rolled in a reward screen affects the future cards in that screen as well as future rewards as they all may affect the influencing variable. Rolling an uncommon does nothing to improve your chances at a rare.&lt;/p&gt;&lt;p&gt;Since looking at the actual source code of the game, I've noticed there are a few misconceptions about the rarity algorithm SlayTheSpire uses out on the web. Hopefully there will be a better writeup explaining the actual process in the future to clear up this confusion.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="text">
-       <string>Next 3 Cards (WIP - Mouseover for tooltip):</string>
+       <string>Next ? Cards (WIP - See tooltip):</string>
       </property>
      </widget>
     </item>
