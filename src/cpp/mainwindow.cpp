@@ -148,11 +148,6 @@ void MainWindow::updateCurrentCardChances() {
         txt.push_back("[*]");
     ui->label_card_info->setText(txt);
 
-
-//    double rareChance = Utils::calculateAtLeast1Rare(cbr, false, false, false) * 100.0;
-//    double uncommonChance = Utils::calculateAtLeast1Uncommon(cbr, false, false, false) * 100.0;
-//    double commonChance = Utils::calculateAtLeast1Common(cbr, false, false, false) * 100.0;
-
     ui->label_cc->setText(QString("%1\%").arg(QString::number(commonChance, 'f', 2)));
     ui->label_uc->setText(QString("%1\%").arg(QString::number(uncommonChance, 'f', 2)));
     ui->label_rc->setText(QString("%1\%").arg(QString::number(rareChance, 'f', 2)));
