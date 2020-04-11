@@ -17,15 +17,15 @@ Config::Config(QString filename) :
     sozuOverride(true),
     wbsOverride(true),
 
-    uncWrite(true),
+    uncWrite(false),
     rareWrite(true),
 
     potionFormat("$% !Potions"),
     sozuFormat("0% !Potions"),
     wbsFormat("100% !Potions"),
 
-    uncFormat("$% Uncommon"),
-    rareFormat("$% Rare")
+    uncFormat("Uncommon: $% (@%)"),
+    rareFormat("Rare: $% (@%)")
 {
     this->loadFromFile();
 

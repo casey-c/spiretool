@@ -37,6 +37,7 @@ public:
 
     // Special formatted getters
     QString getCharNameAndFloor();
+    QString getBossAndAsc();
     QPixmap getPixmap();
 
     // Filter support (usage TODO in future update)
@@ -55,23 +56,18 @@ public:
 private:
     Run(QString filename);
 
-    QString filename;
+    QString filename, char_name, boss;
     long date;
-    QString char_name;
 
-    bool is_asc;
-    bool post_combat;
+    bool is_asc, post_combat;
+    bool hasSozu, hasWBS, hasQC, hasBC, hasPW, hasNL;
 
-    int asc_level;
-    int floor_reached;
-
-    int potion_chance;
-    int cbr;
+    int asc_level, floor_reached;
+    int potion_chance, cbr;
 
     // relics
     QVector<QString> current_relics;
 
-    bool hasSozu, hasWBS, hasQC, hasBC, hasPW, hasNL;
 
     //QVector<CardDetails*> cards;
     //QVector<RelicDetails*> relics;

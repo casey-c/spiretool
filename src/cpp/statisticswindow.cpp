@@ -1,6 +1,7 @@
 #include "src/h/statisticswindow.h"
 #include "ui_statisticswindow.h"
 #include <QtDebug>
+#include <QShortcut>
 
 StatisticsWindow::StatisticsWindow(Config* config, QWidget *parent) :
     QWidget(parent),
@@ -8,6 +9,8 @@ StatisticsWindow::StatisticsWindow(Config* config, QWidget *parent) :
     config(config)
 {
     ui->setupUi(this);
+
+    connect( new QShortcut(QKeySequence("Q"), this), &QShortcut::activated, this, &StatisticsWindow::close );
 
     streaks = new Streaks(config->getRunsLocation());
     refreshRuns();

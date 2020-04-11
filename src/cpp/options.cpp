@@ -2,6 +2,7 @@
 #include "ui_options.h"
 #include <QDebug>
 #include <QFileDialog>
+#include <QShortcut>
 
 Options::Options(Config* config, QWidget* parent) :
     QWidget(parent),
@@ -9,6 +10,7 @@ Options::Options(Config* config, QWidget* parent) :
     config(config)
 {
     ui->setupUi(this);
+    connect( new QShortcut(QKeySequence("Q"), this), &QShortcut::activated, this, &Options::close );
 }
 
 Options::~Options()
@@ -102,6 +104,7 @@ void Options::loadPotionsFromConfig() {
     this->ui->edit_potion_out->setEnabled(potionEnabled);
     this->ui->edit_potion_format->setEnabled(potionEnabled);
     this->ui->browse_potion_out->setEnabled(potionEnabled);
+    this->ui->label_potion_overrides->setEnabled(potionEnabled);
 
     // Sozu & WBS
     this->ui->edit_potion_format_sozu->setText(config->getSozuFormat());
@@ -163,6 +166,7 @@ void Options::onPotionToggle() {
     this->ui->edit_potion_out->setEnabled(potionEnabled);
     this->ui->edit_potion_format->setEnabled(potionEnabled);
     this->ui->browse_potion_out->setEnabled(potionEnabled);
+    this->ui->label_potion_overrides->setEnabled(potionEnabled);
 
     // sozu / wbs
     this->ui->check_sozu->setEnabled(potionEnabled);

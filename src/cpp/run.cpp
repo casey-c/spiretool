@@ -26,15 +26,21 @@ Run* Run::build(QString filename) {
 
 Run::Run(QString filename) :
   filename(filename),
-  date(0),
   char_name("Unknown Character"),
+  boss("Unknown Boss"),
+  date(0),
+  is_asc(false),
   post_combat(false),
   hasSozu(false),
   hasWBS(false),
   hasQC(false),
   hasBC(false),
   hasPW(false),
-  hasNL(false)
+  hasNL(false),
+  asc_level(0),
+  floor_reached(0),
+  potion_chance(40),
+  cbr(5)
 {
 
 }
@@ -108,6 +114,13 @@ bool Run::refresh() {
           }
       }
 
+      // Boss / Asc
+      boss = Utils::docGetQStringOr(obj, "boss", "Unknown Boss");
+//      if (obj.contains("boss"))
+//          boss = obj["boss"].toString();
+//      if (obj.contains("ascension_level"))
+//          asc_level = obj["ascension_level"].toInt();
+
 //      qDebug() << "run: changes" << anythingChanged;
     }
   }
@@ -134,6 +147,12 @@ void Run::print() {
 QString Run::getCharNameAndFloor() {
     QString formatted = char_name;
     formatted.append(QString(" (floor %1)").arg(floor_reached));
+    return formatted;
+}
+
+QString Run::getBossAndAsc() {
+    QString formatted = boss;
+    formatted.append(QString(" (A%1)").arg(asc_level));
     return formatted;
 }
 

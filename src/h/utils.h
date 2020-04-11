@@ -19,7 +19,9 @@ public:
     static QString extractCharacterName(QString file);
 
     static QString formatPotion(int chance, QString format);
-    static QString formatStrings(QString chance, QString format);
+    //static QString formatStrings(QString chance, QString format);
+
+    static QString formatStrings(QString replacement, QString target, QString format);
 
     static QStringList getFilesSortedByNameEarliestFirst(QString directory);
 
@@ -30,9 +32,11 @@ public:
     static bool docGetBoolOr(QJsonObject obj, QString key, bool def);
 
     static int determineNumRewardCards(bool hasQuestionCard, bool hasBustedCrown, bool hasPrayerWheel);
-    static int determineRareChance(bool hasNloths);
+    static int determineRareChance(int startChance, bool hasNloths);
 
     static double calculateProb(int cbr, int numCards, int rareChance, RARITY rarity);
+
+    static void writeStringToFile(QString s, QString filename);
 
 //    static double calculateAtLeast1Rare(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);
 //    static double calculateAtLeast1Uncommon(int cbr, bool hasQuestionCard, bool hasBustedCrown, bool hasNloths);

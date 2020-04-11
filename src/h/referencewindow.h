@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::ReferenceWindow *ui;
+
 };
 
 #endif // REFERENCEWINDOW_H

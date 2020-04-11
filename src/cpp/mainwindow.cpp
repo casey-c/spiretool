@@ -129,19 +129,27 @@ void MainWindow::updateCurrentCardChances() {
                 current_run->hasBustedCrown(),
                 current_run->hasPrayerWheel()
                 );
-    int baseRareChance = Utils::determineRareChance( current_run->hasNloths() );
-
+    int baseRareChance = Utils::determineRareChance( 3, current_run->hasNloths() );
     double rareChance = Utils::calculateProb(cbr, numCards, baseRareChance, Utils::RARE) * 100.0;
     double uncommonChance = Utils::calculateProb(cbr, numCards, baseRareChance, Utils::UNCOMMON) * 100.0;
     double commonChance = Utils::calculateProb(cbr, numCards, baseRareChance, Utils::COMMON) * 100.0;
 
+    int baseEliteRareChance = Utils::determineRareChance( 10, current_run->hasNloths() );
+    double eliteRareChance = Utils::calculateProb(cbr, numCards, baseRareChance, Utils::RARE) * 100.0;
+
+//    double uncommonChance = Utils::calculateProb(cbr, numCards, baseRareChance, Utils::UNCOMMON) * 100.0;
+//    double commonChance = Utils::calculateProb(cbr, numCards, baseRareChance, Utils::COMMON) * 100.0;
+
     qDebug() << "Our cbr is" << cbr;
     qDebug() << "Num cards" << numCards;
-    qDebug() << "Our base rare chance is" << baseRareChance;
 
+    qDebug() << "Our base rare chance is" << baseRareChance;
     qDebug() << "final rare" << rareChance;
-    qDebug() << "final unc" << uncommonChance;
-    qDebug() << "final comm" << commonChance;
+
+    qDebug() << "Our base elite rare chance is" << baseEliteRareChance;
+    qDebug() << "final elite rare" << eliteRareChance;
+//    qDebug() << "final unc" << uncommonChance;
+//    qDebug() << "final comm" << commonChance;
 
     QString txt = QString("Next %1 Cards (WIP - See tooltip)").arg(numCards);
     if ((current_run->hasQuestionCard() || current_run->hasBustedCrown() || current_run->hasPrayerWheel() || current_run->hasNloths()))
@@ -153,10 +161,10 @@ void MainWindow::updateCurrentCardChances() {
     ui->label_rc->setText(QString("%1\%").arg(QString::number(rareChance, 'f', 2)));
 
     // Write to file if desired
-    if (config->getUncWrite())
-        writeUncFile(QString::number(uncommonChance, 'f', 2));
-    if (config->getRareWrite())
-        writeRareFile(QString::number(rareChance, 'f', 2));
+//    if (config->getUncWrite())
+//        writeUncFile(QString::number(uncommonChance, 'f', 2));
+//    if (config->getRareWrite())
+//        writeRareFile(QString::number(rareChance, 'f', 2));
 
 }
 
@@ -211,37 +219,37 @@ void MainWindow::writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast) {
   }
 }
 
-void MainWindow::writeUncFile(QString chance) {
-  QString filename = config->getUncommonLocation();
-  QString format =  Utils::formatStrings(chance, config->getUncommonFormat());
+//void MainWindow::writeUncFile(QString chance) {
+//  QString filename = config->getUncommonLocation();
+//  QString format =  Utils::formatStrings(chance, config->getUncommonFormat());
 
-  qDebug() << "Final format string: " << format;
+//  qDebug() << "Final format string: " << format;
 
-  QFile file(filename);
-  if (file.open(QFile::WriteOnly | QFile::Truncate)) {
-    file.write(format.toLocal8Bit());
-    file.close();
-  }
-  else {
-    qWarning() << "ERROR: could not write uncommon file";
-  }
-}
+//  QFile file(filename);
+//  if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+//    file.write(format.toLocal8Bit());
+//    file.close();
+//  }
+//  else {
+//    qWarning() << "ERROR: could not write uncommon file";
+//  }
+//}
 
-void MainWindow::writeRareFile(QString chance) {
-  QString filename = config->getRareLocation();
-  QString format =  Utils::formatStrings(chance, config->getRareFormat());
+//void MainWindow::writeRareFile(QString chance) {
+//  QString filename = config->getRareLocation();
+//  QString format =  Utils::formatStrings(chance, config->getRareFormat());
 
-  qDebug() << "Final format string: " << format;
+//  qDebug() << "Final format string: " << format;
 
-  QFile file(filename);
-  if (file.open(QFile::WriteOnly | QFile::Truncate)) {
-    file.write(format.toLocal8Bit());
-    file.close();
-  }
-  else {
-    qWarning() << "ERROR: could not write rare file";
-  }
-}
+//  QFile file(filename);
+//  if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+//    file.write(format.toLocal8Bit());
+//    file.close();
+//  }
+//  else {
+//    qWarning() << "ERROR: could not write rare file";
+//  }
+//}
 
 
 

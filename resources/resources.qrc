@@ -16,5 +16,13 @@
         <file>silent.svg</file>
         <file>ironclad.svg</file>
         <file>unknown.svg</file>
+        <file>potion.svg</file>
+        <file>elite.svg</file>
+        <file>deck.svg</file>
+        <file>deck_elite.svg</file>
+        <file>save.svg</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>Kreon-Regular.ttf</file>
     </qresource>
 </RCC>

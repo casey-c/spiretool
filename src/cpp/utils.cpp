@@ -69,13 +69,13 @@ QString Utils::formatPotion(int chance, QString format) {
   return combined;
 }
 
-QString Utils::formatStrings(QString chance, QString format) {
-  QStringList list = format.split("$");
+QString Utils::formatStrings(QString replacement, QString target, QString format) {
+  QStringList list = format.split(target);
   QStringList* final = new QStringList();
 
   for (QString s : list) {
     final->push_back(s);
-    final->push_back(chance);
+    final->push_back(replacement);
   }
 
   if (!final->empty())
@@ -249,13 +249,23 @@ int Utils::determineNumRewardCards(bool hasQuestionCard, bool hasBustedCrown, bo
     return numCards;
 }
 
-int Utils::determineRareChance(bool hasNloths) {
-    int rareChance = 3;
-    if (hasNloths) rareChance *= 3;
+int Utils::determineRareChance(int startChance, bool hasNloths) {
+    if (hasNloths) startChance *= 3;
 
-    return rareChance;
+    return startChance;
 }
 
+void Utils::writeStringToFile(QString s, QString filename) {
+  QFile file(filename);
+  if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+    file.write(s.toLocal8Bit());
+    file.close();
+  }
+  else {
+    qWarning() << "ERROR: could not write file" << filename;
+  }
+
+}
 
 
 

@@ -16,6 +16,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    carddisplay.cpp \
+    custombutton.cpp \
+    mainwindow2.cpp \
+    mainwindow3.cpp \
+    potiondisplay.cpp \
     src/cpp/resourcemanager.cpp \
     src/cpp/run.cpp \
     src/cpp/cardstatistics.cpp \
@@ -33,6 +38,11 @@ SOURCES += \
     src/cpp/referencewindow.cpp
 
 HEADERS += \
+    carddisplay.h \
+    custombutton.h \
+    mainwindow2.h \
+    mainwindow3.h \
+    potiondisplay.h \
     src/h/resourcemanager.h \
     src/h/run.h \
     src/h/cardstatistics.h \
@@ -49,6 +59,11 @@ HEADERS += \
     src/h/referencewindow.h
 
 FORMS += \
+    carddisplay.ui \
+    custombutton.ui \
+    mainwindow2.ui \
+    mainwindow3.ui \
+    potiondisplay.ui \
     src/ui/about.ui \
     src/ui/mainwindow.ui \
     src/ui/options.ui \

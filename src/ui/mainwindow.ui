@@ -202,7 +202,7 @@
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="font">
@@ -219,8 +219,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>30</width>
+          <height>30</height>
          </size>
         </property>
        </widget>
@@ -230,7 +230,7 @@
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="font">
@@ -247,8 +247,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>30</width>
+          <height>30</height>
          </size>
         </property>
        </widget>
@@ -258,7 +258,7 @@
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="font">
@@ -275,8 +275,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>30</width>
+          <height>30</height>
          </size>
         </property>
        </widget>
@@ -286,7 +286,7 @@
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="font">
@@ -303,8 +303,8 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>30</width>
+          <height>30</height>
          </size>
         </property>
        </widget>
