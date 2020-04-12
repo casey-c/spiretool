@@ -98,7 +98,7 @@
       </font>
      </property>
      <property name="text">
-      <string>40%</string>
+      <string>85%</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
