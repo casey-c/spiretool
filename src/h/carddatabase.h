@@ -12,6 +12,9 @@ public:
     CardDatabase();
     void print();
 
+    QList<Card*> getCards() { return cards.values(); };
+    QList<CardStatistics*> getCardStats() { return cardStats.values(); };
+
 private:
     QMap<QString, Card*> cards;
     QMap<QString, CardStatistics*> cardStats;

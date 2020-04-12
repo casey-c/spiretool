@@ -13,6 +13,8 @@
 
 #include "potiondisplay.h"
 #include "carddisplay.h"
+#include "eventoverview.h"
+#include "eventdisplay.h"
 
 namespace Ui {
 class MainWindow3;
@@ -32,6 +34,7 @@ private:
     // Displays
     PotionDisplay* potionDisplay;
     CardDisplay* cardDisplay;
+    EventDisplay* eventDisplay;
 
     // Child windows
     Config* config;
@@ -40,6 +43,10 @@ private:
     About* aboutWindow;
     StatisticsWindow* statsWindow;
     ReferenceWindow* referenceWindow;
+
+    // temp
+    //EventOverview* eventOverview;
+
 
     // Setup
     void setupUI();
@@ -51,6 +58,7 @@ private:
     void updateCurrentSaveData(const QString& fullSavePath);
     void updateCurrentPotionInfo();
     void updateCurrentCardChances();
+    void updateCurrentEventChances();
 
     void writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast);
     void writeRareFile(double rareChance, double eliteRareChance);
@@ -63,6 +71,7 @@ private slots:
     void showAboutWindow();
     void showStatsWindow();
     void showReferenceWindow();
+    //void showEventsWindow();
 
     void shutdown();
 };

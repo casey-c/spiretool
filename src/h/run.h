@@ -53,6 +53,10 @@ public:
     bool floorReachedG(int x) { return floor_reached > x; }
     bool floorReachedGE(int x) { return floor_reached >= x; }
 
+    double getMonsterChance() { return monster_chance; }
+    double getShopChance() { return shop_chance; }
+    double getTreasureChance() { return treasure_chance; }
+
 private:
     Run(QString filename);
 
@@ -64,6 +68,8 @@ private:
 
     int asc_level, floor_reached;
     int potion_chance, cbr;
+
+    double elite_chance, monster_chance, shop_chance, treasure_chance;
 
     // relics
     QVector<QString> current_relics;

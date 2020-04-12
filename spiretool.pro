@@ -18,6 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     carddisplay.cpp \
     custombutton.cpp \
+    eventdisplay.cpp \
+    eventoverview.cpp \
     mainwindow2.cpp \
     mainwindow3.cpp \
     potiondisplay.cpp \
@@ -40,6 +42,8 @@ SOURCES += \
 HEADERS += \
     carddisplay.h \
     custombutton.h \
+    eventdisplay.h \
+    eventoverview.h \
     mainwindow2.h \
     mainwindow3.h \
     potiondisplay.h \
@@ -61,6 +65,8 @@ HEADERS += \
 FORMS += \
     carddisplay.ui \
     custombutton.ui \
+    eventdisplay.ui \
+    eventoverview.ui \
     mainwindow2.ui \
     mainwindow3.ui \
     potiondisplay.ui \

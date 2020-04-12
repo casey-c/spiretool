@@ -21,6 +21,10 @@
         <file>deck.svg</file>
         <file>deck_elite.svg</file>
         <file>save.svg</file>
+        <file>chest.svg</file>
+        <file>shop.svg</file>
+        <file>monster.svg</file>
+        <file>event.svg</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>Kreon-Regular.ttf</file>

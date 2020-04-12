@@ -13,6 +13,15 @@ public:
     void chooseOther() { ++timesChoseOther; see(); }
     void skip() { ++timesSkipped; see(); }
 
+    //Card* getCard() { return card; }
+    QString getName() { return card->getCardName(); }
+    QString getClassName() { return card->getClassName(); }
+
+    int getTimesSeen() { return timesSeen; }
+    int getTimesPicked() { return timesPicked; }
+    //int getTimesChoseOther() { return timesSeen - timesSkipped - timesPicked; }
+    int getTimesSkipped() { return timesSkipped; }
+
     operator QString();
 
 private:

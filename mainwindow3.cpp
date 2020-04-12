@@ -4,6 +4,7 @@
 #include "potiondisplay.h"
 #include "carddisplay.h"
 #include "custombutton.h"
+#include "eventoverview.h"
 
 #include "src/h/resourcemanager.h"
 #include "src/h/utils.h"
@@ -16,6 +17,7 @@ MainWindow3::MainWindow3(QWidget *parent) :
   ui(new Ui::MainWindow3),
   potionDisplay(new PotionDisplay()),
   cardDisplay(new CardDisplay()),
+  eventDisplay(new EventDisplay()),
   currentRun(nullptr)
 {
   ui->setupUi(this);
@@ -28,6 +30,9 @@ MainWindow3::MainWindow3(QWidget *parent) :
   statsWindow = new StatisticsWindow(config);
   referenceWindow = new ReferenceWindow();
 
+
+  // Testing
+  //eventOverview = new EventOverview();
 
   // Add all the custom QWidgets
   setupUI();
@@ -53,32 +58,25 @@ void MainWindow3::setupUI() {
   this->ui->layout_options->addWidget(statsButton);
   this->ui->layout_options->addWidget(referenceButton);
   this->ui->layout_options->addWidget(tutorialButton);
+
+  // testing
+//  CustomButton* events = new CustomButton("Events", ResourceManager::getInstance().getIconHelp(), this);
+//  this->ui->layout_options->addWidget(events);
+//  connect(events, &QPushButton::clicked, this, &MainWindow3::showEventsWindow );
+
   this->ui->layout_options->addStretch(1);
 
+  // Display tiles
   this->ui->layout_potions->addWidget(potionDisplay);
   this->ui->layout_cards->addWidget(cardDisplay);
+  this->ui->layout_events->addWidget(eventDisplay);
 
-  // TODO: Connections
-  connect(optionsButton,
-          &QPushButton::clicked,
-          this,
-          &MainWindow3::showOptionsWindow
-          );
-  connect(statsButton,
-          &QPushButton::clicked,
-          this,
-          &MainWindow3::showStatsWindow
-          );
-  connect(referenceButton,
-          &QPushButton::clicked,
-          this,
-          &MainWindow3::showReferenceWindow
-          );
-  connect(tutorialButton,
-          &QPushButton::clicked,
-          this,
-          &MainWindow3::showTutorialWindow
-          );
+  // Connections for the custom buttons
+  connect(optionsButton, &QPushButton::clicked, this, &MainWindow3::showOptionsWindow );
+  connect(statsButton, &QPushButton::clicked, this, &MainWindow3::showStatsWindow );
+  connect(referenceButton, &QPushButton::clicked, this, &MainWindow3::showReferenceWindow );
+  connect(tutorialButton, &QPushButton::clicked, this, &MainWindow3::showTutorialWindow );
+
 }
 
 
@@ -120,6 +118,7 @@ void MainWindow3::updateCurrentSaveData(const QString& fullSavePath) {
 
   updateCurrentPotionInfo();
   updateCurrentCardChances();
+  updateCurrentEventChances();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -189,6 +188,25 @@ void MainWindow3::updateCurrentCardChances() {
 
 }
 
+void MainWindow3::updateCurrentEventChances() {
+  // Update the potion chance
+  //int potion_chance = currentRun->getPotionChance() + 40;
+  //int floor = currentRun->getCurrentFloor();
+    double monsterChance = currentRun->getMonsterChance() * 100.0;
+    double shopChance = currentRun->getShopChance() * 100.0;
+    double treasureChance = currentRun->getTreasureChance() * 100.0;
+    double eventChance = 100.0 - monsterChance - shopChance - treasureChance;
+
+    eventDisplay->setChances(eventChance, monsterChance, shopChance, treasureChance);
+
+
+    //TODO
+    // Write to file if desired
+    //if (config->getPotionWrite()) {
+    //writePotionFile(potion_chance, currentRun->hasSozuRelic(), currentRun->hasWhiteBeastStatue());
+    //}
+}
+
 void MainWindow3::writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast) {
   QString filename = config->getPotionLocation();
   QString format("");
@@ -207,16 +225,16 @@ void MainWindow3::writePotionFile(int chance, bool hasSozu, bool hasWhiteBeast) 
 
 void MainWindow3::writeUncFile(double uncChance, double eliteUncChance) {
   QString format =  Utils::formatStrings(
-              QString::number(uncChance, 'f', 2),
-              QString("$"),
-              config->getUncommonFormat()
-              );
+        QString::number(uncChance, 'f', 2),
+        QString("$"),
+        config->getUncommonFormat()
+        );
 
   format = Utils::formatStrings(
-              QString::number(eliteUncChance, 'f', 2),
-              QString("@"),
-              format
-              );
+        QString::number(eliteUncChance, 'f', 2),
+        QString("@"),
+        format
+        );
 
   qDebug() << "Final format string: " << format;
   Utils::writeStringToFile(format, config->getUncommonLocation());
@@ -224,16 +242,16 @@ void MainWindow3::writeUncFile(double uncChance, double eliteUncChance) {
 
 void MainWindow3::writeRareFile(double rareChance, double eliteRareChance) {
   QString format =  Utils::formatStrings(
-              QString::number(rareChance, 'f', 2),
-              QString("$"),
-              config->getRareFormat()
-              );
+        QString::number(rareChance, 'f', 2),
+        QString("$"),
+        config->getRareFormat()
+        );
 
   format = Utils::formatStrings(
-              QString::number(eliteRareChance, 'f', 2),
-              QString("@"),
-              format
-              );
+        QString::number(eliteRareChance, 'f', 2),
+        QString("@"),
+        format
+        );
 
   qDebug() << "Final format string: " << format;
   Utils::writeStringToFile(format, config->getRareLocation());
@@ -248,8 +266,11 @@ void MainWindow3::showAboutWindow() { aboutWindow->show(); }
 void MainWindow3::showStatsWindow() { statsWindow->show(); }
 void MainWindow3::showReferenceWindow() { referenceWindow->show(); }
 
+// testing
+//void MainWindow3::showEventsWindow() { eventOverview->show(); }
+
 void MainWindow3::shutdown() {
-    QApplication::closeAllWindows();
+  QApplication::closeAllWindows();
 }
 
 

@@ -17,6 +17,9 @@ public:
 
   bool isStarter() {return rarity == "Starter"; }
 
+  QString getCardName() { return name; }
+  QString getClassName() { return character; }
+
 private:
   QString character, name, id, type, rarity, cost, desc;
 

@@ -40,7 +40,11 @@ Run::Run(QString filename) :
   asc_level(0),
   floor_reached(0),
   potion_chance(40),
-  cbr(5)
+  cbr(5),
+  elite_chance(0.0),
+  monster_chance(0.0),
+  shop_chance(0.0),
+  treasure_chance(0.0)
 {
 
 }
@@ -122,6 +126,19 @@ bool Run::refresh() {
 //          asc_level = obj["ascension_level"].toInt();
 
 //      qDebug() << "run: changes" << anythingChanged;
+
+      // ? Questions
+      // TODO: make less dangerous / prone to crashes
+      if (obj.contains("event_chances")) {
+          QJsonArray chances = obj["event_chances"].toArray();
+          if (chances.size() == 4) {
+              elite_chance = chances[0].toDouble();
+              monster_chance = chances[1].toDouble();
+              shop_chance = chances[2].toDouble();
+              treasure_chance = chances[3].toDouble();
+          }
+      }
+
     }
   }
   else {
